@@ -1,1 +1,0 @@
-This is a Marketplace for the German base startup.

@@ -13,7 +13,7 @@ export default function NavBar() {
             height={40} 
             className="rounded-full"
           />
-          <span className="text-xl font-semibold text-gray-700">MeinBabyShop</span>
+          <span className="text-xl font-semibold text-gray-700">Mama Marketplace</span>
         </div>
 
         {/* Desktop Navigation */}

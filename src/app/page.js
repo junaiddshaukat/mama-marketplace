@@ -75,6 +75,7 @@ export default function Page() {
         <CategorySection />
         <ProductSection title="Bekleidung" products={clothingProducts} />
         <ProductSection title="Spielzeug" products={toyProducts} />
+        <ProductSection title="Spielzeug" products={toyProducts} />
       </main>
       <Footer />
     </div>

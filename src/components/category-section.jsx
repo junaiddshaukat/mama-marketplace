@@ -19,6 +19,7 @@ export default function CategorySection() {
             key={category.name}
             className="flex min-w-[100px] cursor-pointer flex-col items-center gap-2 transition hover:opacity-80"
           >
+              <span className="text-lg font-bold text-gray-600">{category.name}</span>
             <div className="rounded-full bg-gray-50 p-4 shadow-sm">
               <Image
                 src={category.image}
@@ -28,7 +29,6 @@ export default function CategorySection() {
                 className="h-12 w-12 object-contain"
               />
             </div>
-            <span className="text-sm text-gray-600">{category.name}</span>
           </div>
         ))}
       </div>

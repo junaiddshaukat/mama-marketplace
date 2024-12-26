@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import axios from 'axios'
 import Image from 'next/image'
 import NavBar from './navbar'
 import Footer from './footer'
@@ -10,15 +11,25 @@ export default function SignInPage() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     if (!email || !password) {
       setError('Bitte füllen Sie alle Felder aus.')
       return
     }
-    // Here you would typically handle the sign-in logic
-    console.log('Sign in attempt with:', email, password)
-    setError('')
+
+    try {
+      const response = await axios.post('http://localhost:8000/user/login', {
+        email,
+        password,
+      })
+      console.log('Login successful:', response.data)
+      setError('') // Clear any previous error messages
+      // You can handle further actions like redirecting the user here
+    } catch (err) {
+      console.error('Login error:', err)
+      setError('Fehler beim Anmelden. Bitte überprüfen Sie Ihre Anmeldedaten.')
+    }
   }
 
   return (
@@ -35,7 +46,7 @@ export default function SignInPage() {
               height={48}
             />
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-              Anmelden bei MeinBabyShop
+              Welcome to Mama Marketplace
             </h2>
           </div>
           <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
@@ -139,4 +150,3 @@ export default function SignInPage() {
     </div>
   )
 }
-

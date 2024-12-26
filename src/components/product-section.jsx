@@ -13,21 +13,21 @@ export default function ProductSection({ title, products }) {
       </div>
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {products.map((product) => (
-          <div key={product.id} className="group overflow-hidden rounded-xl bg-white shadow-sm transition hover:shadow-md">
+          <div key={product._id} className="group overflow-hidden rounded-xl bg-white shadow-sm transition hover:shadow-md">
             <div className="relative">
               <div className="absolute right-2 top-2 z-10 rounded-full bg-white p-2 shadow-sm">
                 <Heart className="h-5 w-5 text-gray-400" />
               </div>
-              <Image
-                src={product.image}
+              {/* <Image
+                //  src={product.image}
                 alt={product.name}
                 width={300}
                 height={200}
                 className="h-48 w-full object-cover"
-              />
+              /> */}
             </div>
             <div className="p-4">
-              <h3 className="mb-2 font-semibold text-gray-800">{product.name}</h3>
+              <h3 className="mb-2 font-semibold text-gray-800">{product.title}</h3>
               <p className="mb-2 text-lg font-bold text-[#FF8A00]">€{product.price}</p>
               <p className="mb-4 text-sm text-gray-500">{product.description}</p>
               <div className="flex items-center justify-between">

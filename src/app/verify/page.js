@@ -4,13 +4,22 @@ import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import { ArrowLeft, Mail } from 'lucide-react'
 import Link from 'next/link'
+import { useActivationMutation } from '../redux/features/auth/authapi'
+import { useRegistrationMutation } from '../redux/features/auth/authapi'
+import { useSelector } from 'react-redux'
+import { useRouter } from 'next/navigation'
 
 export default function VerifyPage() {
+  const router = useRouter()
+  const {token} = useSelector((state)=>state.auth)
   const [code, setCode] = useState(['', '', '', ''])
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [resendTimer, setResendTimer] = useState(30)
   const inputRefs = [useRef(), useRef(), useRef(), useRef()]
+    const [activation, { isError }] = useActivationMutation();
+    const [register, { data}] = useRegistrationMutation();
+    
 
   useEffect(() => {
     // Focus first input on mount
@@ -27,6 +36,7 @@ export default function VerifyPage() {
   const handleInput = (index, value) => {
     // Clear any previous errors
     setError('')
+
 
     // Only allow numbers
     if (value && !/^\d+$/.test(value)) return
@@ -74,18 +84,14 @@ export default function VerifyPage() {
     setError('')
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500))
-      
-      // For demo purposes, consider code "1234" as valid
-      if (verificationCode === '1234') {
-        // Redirect to dashboard or next step
-        window.location.href = '/dashboard'
-      } else {
-        setError('Invalid verification code. Please try again.')
-      }
-    } catch (err) {
-      setError('An error occurred. Please try again.')
+      const result = await activation({
+        activation_token: token,
+        activation_code: verificationCode,
+      }).unwrap();
+      alert(result?.message || "Activation successful");
+      router.push("/login");
+    } catch (error) {
+      alert(error?.data?.message || "Something went wrong");
     } finally {
       setIsLoading(false)
     }

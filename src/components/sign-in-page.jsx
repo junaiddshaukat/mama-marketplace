@@ -19,11 +19,15 @@ export default function SignInPage() {
     }
 
     try {
+      console.log({
+        email,
+        password,
+      })
       const response = await axios.post('http://localhost:8000/user/login', {
         email,
         password,
       })
-      console.log('Login successful:', response.data)
+      console.log('Login successful:', response.user)
       setError('') // Clear any previous error messages
       // You can handle further actions like redirecting the user here
     } catch (err) {

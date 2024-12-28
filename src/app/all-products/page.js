@@ -1,6 +1,6 @@
-import NavBar from "@/components/navbar"
+import NavBar from "../../components/navbar"
 import AllProductsPage from "../../components/all-products-page"
-import Footer from "@/components/footer"
+import Footer from "../../components/footer"
 
 const products = [
   {

@@ -35,12 +35,18 @@ export default function NavBar() {
 
         <div className="flex items-center gap-4">
           <div className="hidden md:flex md:items-center md:gap-4">
-            <button className="text-[#FFB5C7] hover:text-[#ff9fb8]">
+          <Link href="/login">
+          <button className="text-[#FFB5C7] hover:text-[#ff9fb8]">
               Log In
             </button>
-            <button className="rounded-full bg-[#FFB5C7] px-6 py-2 text-white hover:bg-[#ff9fb8]">
+          </Link>
+          <Link href="/register">
+          <button className="rounded-full bg-[#FFB5C7] px-6 py-2 text-white hover:bg-[#ff9fb8]">
               Sign Up
             </button>
+
+          </Link>
+          
           </div>
           <MobileMenu />
         </div>
